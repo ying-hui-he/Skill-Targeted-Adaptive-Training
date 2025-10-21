@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Skill-Targeted Adaptive Training (STAT)</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://kit.fontawesome.com/f8ddf9854a.js" crossorigin="anonymous"></script>
+  <meta charset="utf-8">
+  <meta name="description" content="Skill-Targeted Adaptive Training (STAT)">
+  <meta name="keywords" content="Goedel-Prover, Theorem Prover, Language Model, AI in Math">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="https://github.com/Goedel-LM/Goedel-Prover-V2/blob/main/assets/logo.png?raw=true">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Noto Sans', sans-serif;
+    }
+
+    .hero {
+      background-color: #f8f9fa;
+    }
+    
+    .publication-title {
+      font-family: 'Google Sans', sans-serif;
+    }
+
+    .publication-subtitle {
+       font-family: 'Google Sans', sans-serif;
+    }
+
+    .publication-authors {
+      font-family: 'Google Sans', sans-serif;
+    }
+    
+    .author-block {
+      display: inline-block;
+      margin: 0.1rem 0.5rem;
+    }
+    
+    .affiliations {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .publication-links {
+      margin-top: 1.5rem;
+    }
+
+    .badges {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding: 1rem;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      background: #333;
+      color: #fff;
+      text-decoration: none;
+      font-family: sans-serif;
+      font-size: 1rem;
+      border-radius: 999em;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .badge:hover {
+      background: #4a4a4a;
+      transform: translateY(-2px);
+    }
+    .badge svg,
+    .badge .emoji {
+      width: 1.2em;
+      height: 1.2em;
+      margin-right: 0.5em;
+      fill: currentColor;
+    }
+
+    .key-achievements {
+      background: #ffffff;
+      border-radius: 1rem;
+      padding: 2.5rem;
+      box-shadow: 0 8px 16px rgba(10,10,10,0.05);
+      border: 1px solid #eee;
+    }
+    .key-achievements h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      color: #1f2937;
+    }
+    .achievement-item {
+      text-align: center;
+      padding: 1rem;
+    }
+    .achievement-item .icon {
+      font-size: 2.5rem;
+      color: #3b82f6;
+      margin-bottom: 1rem;
+    }
+    .achievement-item h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 0.5rem;
+    }
+    .achievement-item p {
+      color: #6b7280;
+      line-height: 1.6;
+    }
+    
+    .section-title h2 {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #1a1a1a;
+        margin-bottom: 1rem;
+    }
+    
+    .section-title p {
+        font-size: 1.1rem;
+        color: #666;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .results-figure {
+      margin: 2rem 0;
+    }
+    .results-figure img {
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border: 1px solid #ddd;
+    }
+    .results-figure figcaption {
+      text-align: center;
+      font-size: 0.9em;
+      margin-top: 1rem;
+      color: #555;
+    }
+    
+    .method-card {
+      background: white;
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      border: 1px solid #e5e7eb;
+      height: 100%;
+    }
+    
+    .method-card .icon {
+      font-size: 1.75rem;
+      color: #3b82f6;
+      margin-right: 1rem;
+    }
+    
+    .method-card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+    
+    .downloads-table {
+      width: 100%;
+      margin-top: 1.5rem;
+      border-collapse: collapse;
+    }
+    .downloads-table th, .downloads-table td {
+      padding: 0.75rem 1rem;
+      border: 1px solid #e5e7eb;
+    }
+    .downloads-table th {
+      background-color: #f9fafb;
+      font-weight: 600;
+    }
+    
+    .leaderboard-table {
+        margin: 2rem auto;
+        width: 80%;
+    }
+    
+    .footer {
+      background-color: #363636;
+      color: #fff;
+    }
+    
+    .footer a {
+      color: #00d1b2;
+    }
+
+  </style>
+</head>
+
+<body>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      
+      <div class="navbar-menu">
+        <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Related Research
+            </a>
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="https://goedel-lm.github.io">
+                Goedel-Prover-V1
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title is-bold">
+              Skill-Targeted Adaptive Training
+            </h1>
+            <h2 class="subtitle is-3 publication-subtitle">
+              <a href="http://blog.goedel-prover.com" style="text-decoration: none; color: inherit;">🎯 Fill Your Model’s Skill Gaps</a>
+            </h2>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><a href="https://ying-hui-he.github.io/" style="text-decoration: none; color: inherit;">Yinghui He</a><sup>*</sup></span>
+              <span class="author-block"><a href="https://abhishekpanigrahi1996.github.io/" style="text-decoration: none; color: inherit;">Abhishek Panigrahi</a><sup>*</sup></span>
+               <span class="author-block"><a href="https://linyongver.github.io/Website/" style="text-decoration: none; color: inherit;">Yong Lin</a></span>
+              <span class="author-block"><a href="https://www.cs.princeton.edu/~arora/" style="text-decoration: none; color: inherit;">Sanjeev Arora</a></span>
+            </div>
+            <div class="affiliations">
+                <!-- <p> <sup>*</sup>Equal Contribution
+                <br> -->
+                Princeton Language and Intelligence, Princeton University
+                <br><br>
+            </div>
+
+            <div class="badges">
+              <a href="https://arxiv.org/abs/2510.10023" class="badge" target="_blank" rel="noopener">
+                <svg viewBox="-64 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M369.9 97.9L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zM332.1 128H256V51.9l76.1 76.1zM48 464V48h160v104c0 13.3 10.7 24 24 24h104v288H48zm250.2-143.7c-12.2-12-47-8.7-64.4-6.5-17.2-10.5-28.7-25-36.8-46.3 3.9-16.1 10.1-40.6 5.4-56-4.2-26.2-37.8-23.6-42.6-5.9-4.4 16.1-.4 38.5 7 67.1-10 23.9-24.9 56-35.4 74.4-20 10.3-47 26.2-51 46.2-3.3 15.8 26 55.2 76.1-31.2 22.4-7.4 46.8-16.5 68.4-20.1 18.9 10.2 41 17 55.8 17 25.5 0 28-28.2 17.5-38.7zm-198.1 77.8c5.1-13.7 24.5-29.5 30.4-35-19 30.3-30.4 35.7-30.4 35zm81.6-190.6c7.4 0 6.7 32.1 1.8 40.8-4.4-13.9-4.3-40.8-1.8-40.8zm-24.4 136.6c9.7-16.9 18-37 24.7-54.7 8.3 15.1 18.9 27.2 30.1 35.5-20.8 4.3-38.9 13.1-54.8 19.2zm131.6-5s-5 6-37.3-7.8c35.1-2.6 40.9 5.4 37.3 7.8z"/></svg>
+                <span>arXiv</span>
+              </a>
+
+              <!-- TODO: huggingface link -->
+              <a href="https://github.com/princeton-pli/STAT" class="badge" target="_blank" rel="noopener">
+                <span class="emoji">🤗</span>
+                <span>HuggingFace</span>
+              </a>
+              <a href="https://github.com/princeton-pli/STAT" class="badge" target="_blank" rel="noopener">
+                <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M32.029,8.345c-13.27,0-24.029,10.759-24.029,24.033c0,10.617 6.885,19.624 16.435,22.803c1.202,0.22 1.64-0.522 1.64-1.16c0-0.569-0.02-2.081-0.032-4.086 c-6.685,1.452-8.095-3.222-8.095-3.222c-1.093-2.775-2.669-3.514-2.669-3.514 c-2.182-1.492,0.165-1.462,0.165-1.462c2.412,0.171 3.681,2.477 3.681,2.477 c2.144,3.672 5.625,2.611 6.994,1.997c0.219-1.553 0.838-2.612 1.526-3.213 c-5.336-0.606-10.947-2.669-10.947-11.877c0-2.623 0.937-4.769 2.474-6.449 c-0.247-0.608-1.072-3.051 0.235-6.36c0,0 2.018-0.646 6.609,2.464c1.917-0.533 3.973-0.8 6.016-0.809c2.041,0.009 4.097,0.276 6.017,0.809c4.588-3.11 6.602-2.464 6.602-2.464c1.311,3.309 0.486,5.752 0.239,6.36c1.54,1.68 2.471,3.826 2.471,6.449c0,9.232-5.62,11.263-10.974,11.858c0.864,0.742 1.632,2.208 1.632,4.451c0,3.212-0.029,5.804-0.029,6.591c0,0.644 0.432,1.392 1.652,1.157c9.542-3.185 16.421-12.186 16.421-22.8c0-13.274 -10.76-24.033-24.034-24.033"/></svg>
+                <span>Code</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <br><br>
+
+ 
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title is-3 has-text-centered">Citation</h2>
+      <pre><code>@article{he2025skilltargetedadaptivetraining,
+      title={Skill-Targeted Adaptive Training}, 
+      author={Yinghui He and Abhishek Panigrahi and Yong Lin and Sanjeev Arora},
+      journal={arXiv preprint arXiv:2510.10023},
+      year={2025},
+      url={https://arxiv.org/abs/2510.10023}, 
+    }
+</code></pre>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p>
+          This website template was adapted from <a href="https://nerfies.github.io/">Nerfies</a>.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
