@@ -142,6 +142,17 @@
       margin-top: 1rem;
       color: #555;
     }
+
+    .method-figure {
+          margin: 2rem 0;
+    }
+    .method-figure img {
+      box-shadow: none;
+      border: none;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+    }
     
     .method-card {
       background: white;
@@ -231,7 +242,7 @@
               Skill-Targeted Adaptive Training
             </h1>
             <h2 class="subtitle is-3 publication-subtitle">
-              <a href="http://blog.goedel-prover.com" style="text-decoration: none; color: inherit;">🎯 Fill Your Model’s Skill Gaps</a>
+              <a href="http://blog.goedel-prover.com" style="text-decoration: none; color: inherit;">🎯 Fill Your Model's Skill Gaps</a>
             </h2>
             <div class="is-size-5 publication-authors">
               <span class="author-block"><a href="https://ying-hui-he.github.io/" style="text-decoration: none; color: inherit;">Yinghui He</a><sup>*</sup></span>
@@ -268,7 +279,53 @@
     </div>
   </section>
 
-  <br><br>
+<section style="max-width: 1000px; margin: 0 auto; padding: 2rem 1rem;">
+    <div class="columns is-centered has-text-centered"> <h2 class="title is-3">Key Achievements  </h2></div>
+   
+    <div style="background: #f8f9fa; border-radius: 1rem; padding: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+      
+      
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; text-align: center;">  
+        
+
+        <div>
+          <p style="font-size: 0.875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: #6b7280; margin-bottom: 0.5rem;">
+            Gain on <b>over-trained</b> dataset (hendrycks MATH)</p>
+          <p style="font-size: 2.25rem; font-weight: 700; color: #748A6F; line-height: 1; margin-bottom: 0.5rem;">
+            <strong style="color: #748A6F;">+7.5%</strong>
+          <p style="font-size: 0.85rem; color: #6b7280;">
+            STAT squeezes out extra performance on MATH, even though models are already over-trained on it.</p>
+        </div>
+
+
+        <div>
+          <p style="font-size: 0.875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: #6b7280; margin-bottom: 0.5rem;">
+            Gain on <b>out-of-distribution</b> dataset</p>
+          <p style="font-size: 2.25rem; font-weight: 700; color: #748A6F; line-height: 1; margin-bottom: 0.5rem;">
+            <strong style="color: #748A6F;"> +4.6% </strong></p>
+          <p style="font-size: 0.85rem; color: #6b7280;">
+            STAT generalizes to 8+ OOD datasets, including the more challenging ones (AMC23, AIME24/25, ...).</p>
+        </div>
+        
+        <div>
+          <p style="font-size: 0.875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: #6b7280; margin-bottom: 0.5rem;">
+            Continual learning on <b>unseen</b> dataset</p>
+          <p style="font-size: 2.25rem; font-weight: 700; color: #748A6F; line-height: 1; margin-bottom: 0.5rem;">
+            <strong style="color: #748A6F;">+4.0%</strong></p>
+          <p style="font-size: 0.875rem; color: #6b7280;">
+            STAT can further adapt a model to an unseen dataset by identifying the model's skill gaps on it.</p>
+        </div>
+        
+
+      </div>
+    </div>
+  
+  </section>
+
+  <section style="max-width: 1000px; margin: 0 auto; padding: 2rem 1rem;">
+    <img src="images/Picture1.png" alt="Methodology" style="display:block; margin:0 auto;width: 90%; height: auto; object-fit: contain;">
+  </section>
+
 
  
 
