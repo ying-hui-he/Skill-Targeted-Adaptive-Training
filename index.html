@@ -223,8 +223,8 @@
               Related Research
             </a>
             <div class="navbar-dropdown">
-              <a class="navbar-item" href="https://goedel-lm.github.io">
-                Goedel-Prover-V1
+              <a class="navbar-item" href="https://arxiv.org/abs/2505.00147">
+                AdaptMI: Adaptive Skill-based In-context Math Instruction for Small Language Models
               </a>
             </div>
           </div>
@@ -309,11 +309,11 @@
         
         <div>
           <p style="font-size: 0.875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: #6b7280; margin-bottom: 0.5rem;">
-            Continual learning on <b>unseen</b> dataset</p>
+            Gain on subsequent <b>RL training</b> </p>
           <p style="font-size: 2.25rem; font-weight: 700; color: #748A6F; line-height: 1; margin-bottom: 0.5rem;">
             <strong style="color: #748A6F;">+4.0%</strong></p>
           <p style="font-size: 0.875rem; color: #6b7280;">
-            STAT can further adapt a model to an unseen dataset by identifying the model's skill gaps on it.</p>
+            The gain from STAT persists and manifests during subsequent RL training.</p>
         </div>
         
 
@@ -322,10 +322,46 @@
   
   </section>
 
-  <section style="max-width: 1000px; margin: 0 auto; padding: 2rem 1rem;">
-    <img src="images/Picture1.png" alt="Methodology" style="display:block; margin:0 auto;width: 90%; height: auto; object-fit: contain;">
-  </section>
+  
+<section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Introduction</h2>
+    
+          <div class="content has-text-justified">
+            <p>
+              Language models often show little to no improvement (i.e., “saturation”) when trained via vanilla supervised fine-tuning (SFT) on data similar to what they saw in their training set (e.g., MATH). <b>We introduce a new fine-tuning strategy, STAT, to train such a student model by using the metacognition ability of a stronger large language model (LLM) as the teacher.</b> The teacher uses the task dataset to create a list of skills needed for the task, and then labels each data point with its required skills. By monitoring the student's answers, the teacher creates a <b>Missing-Skill-Profile</b> for the student, tracking how often they failed to apply each skill in their responses. We use this idea to build a skill-targeted adaptive training set. 
+              
+              <!-- In STAT-Sel, the teacher uses an existing set of training examples but adaptively reweights them according to the Missing-Skill-Profile. In STAT-Syn, the teacher synthesizes additional examples involving missing skills. Across extensive experiments on Llama and Qwen models, our methods yield improvements of up to 7.5% on MATH, whereas SFT provides only limited gains. Furthermore, STAT enhances performance on out-of-distribution benchmarks (e.g., AIME24/25, AMC23, etc.) by an average of 4.6%. Crucially, we find that STAT is complementary to RL via GRPO (Shao et al., 2024): after the model is improved using STAT to address skill gaps, GRPO continues to add further gains. We conclude that skill-targeted adaptive training should broadly improve current training pipelines. -->
+            </p>
 
+            <img src="images/Picture1.png" alt="Methodology" style="display:block; margin:0 auto;width: 100%; height: auto; object-fit: contain;">
+            <br>
+            <p>
+              <b>Method Overview:</b> Our pipeline starts with a list of relevant skills for the problem (SkillMap) created via teacher metacognition, and performs the following three stages. First, we use the teacher to evaluate the student model on a small validation set of questions and use a reward model to identify the questions that are difficult for the student. Second, we create a Missing-Skill-Profile by using the teacher to check the missing skills in the model responses. Our first method <b><i>STAT-Sel</i></b> simply up-weights training examples using the Missing-Skill-Profile; in effect, this guides the student to focus on their deficiencies. Our second (more expensive) method <b><i>STAT-Syn</i></b>  uses the teacher to generate synthetic training data using in-context examples from the validation set associated with a list of deficient skills in Missing-Skill-Profile.
+            </p>
+            <p>
+             <b>Key Results:</b> 
+            Applying STAT-Sel and STAT-Syn teaching on Llama and Qwen models with the popular MATH data shows the following:
+
+<ol style="padding-left: 30px;">
+  <li><b>Substantial in-distribution gains:</b> STAT achieves improvement on MATH by up to 7.5%, whereas naive fine-tuning yields negligible gains. Previous embedding-based data selection strategies that adapt to the student's validation errors are found ineffective.</li>
+
+  <li><b>Strong out-of-distribution (OOD) generalization:</b> Improvements in difficult and OOD benchmarks such as AIME24/25 and AMC23 highlight the general utility of skill-targeted training.</li>
+
+  <li><b>Adaptivity to evolving tasks:</b> STAT-Sel and STAT-Syn can be continually adapted to new, harder evaluation settings (e.g., new validation sets) while still leveraging the same training set.</li>
+
+  <li><b>Supplementary benefits over reinforcement learning (RL):</b> STAT followed by RL improves upon RL-only training such as GRPO, suggesting that STAT is likely to prove relevant to most training pipelines today.</li>
+</ol>
+
+<p>We conduct extensive ablations to pinpoint the success of our proposed methods. A fine-grained skill-level analysis reveals that even when models have been extensively trained on MATH, they struggle on basic operation skills such as basic algebra. By explicitly targeting these basic skills, our methods reduce such errors and improve generation performance, including on out-of-distribution tasks. In contrast, alternative approaches such as embedding-based methods often underperform, as they do not explicitly address these skill gaps. Thus, our findings highlight the importance of skill-targeted adaptive training for advancing model performance.</p>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
  
 
