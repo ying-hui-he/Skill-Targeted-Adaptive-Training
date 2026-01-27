@@ -218,6 +218,25 @@
       padding: 2rem 1.5rem;
     }
 
+    .avatar-img {
+      transition: all 0.3s ease;
+    }
+
+    .avatar-img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15) !important;
+    }
+
+    .author-name {
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .author-name:hover {
+      color: #C2726E !important;
+      font-weight: bold;
+    }
+
   </style>
 
   <!-- For math -->
@@ -235,18 +254,18 @@
   <style>
     :root { --border:#e5e7eb; --muted:#6b7280; --bg:#ffffff; --bg2:#f9fafb; }
     body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-           margin: 24px; color:#111827; background: var(--bg); }
+           margin: 24px; color:#111827; background: var(--bg); font-size: 17px;}
            .tabs { 
               display:flex; 
               gap:10px; 
               justify-content:center;
-              border-bottom:1px solid var(--border); 
+              border-bottom:none; 
               padding-bottom:10px; 
-              margin-bottom:16px; 
+              margin-bottom:5px; 
               flex-wrap:wrap;
             }
-    .tabbtn { border:1px solid var(--border); background:var(--bg2); padding:8px 12px; border-radius:10px; cursor:pointer; }
-    .tabbtn[aria-selected="true"] { background:#111827; color:white; border-color:#111827; }
+    .tabbtn { border:1px solid var(--border); background:var(--bg2); padding:12px 20px; border-radius:10px; cursor:pointer; font-size:15px; }
+    .tabbtn[aria-selected="true"] { background:#748A6F; color:white; border-color:#748A6F; font-weight:bold; }
     .panel { display:none; }
     .panel.active { display:block; }
 
@@ -255,15 +274,24 @@
       font-weight:700; 
       text-align:center;   /* <-- add this */
     }
+    .table-section-title {
+      margin: 0 0 0;
+      font-weight: 700;
+      text-align: center;
+      background: #e8f1e8;
+      padding: 8px 14px;
+      border-radius: 0px;
+    }
     .subnote { color:var(--muted); font-size: 14px; margin-bottom: 8px; }
 
-    table { width:100%; border-collapse:collapse; overflow:hidden; border:1px solid var(--border); border-radius:12px; }
-    thead th { background:var(--bg2); font-weight:700; font-size:15px; border-bottom:1px solid var(--border); }
-    th, td { padding:10px 10px; text-align:right; border-bottom:1px solid var(--border); }
+    table { width:100%; border-collapse:collapse; overflow:hidden; border:none; border-radius:0px; }
+    thead th { background:#f1f3f5; font-weight:700; font-size:15px; border-bottom:none; }
+    th, td { padding:10px 10px; text-align:right; border-bottom:none; }
     th:first-child, td:first-child { text-align:left; white-space:nowrap; }
-    tbody tr:hover td { background:#fafafa; }
+    tbody tr:hover td { background:#f3f3f3; }
+    tbody tr:has(.methods-strong):hover td { background:#efdedd; }
     tbody td {
-      font-size: 14px; /* change this value */
+      font-size: 15px; /* change this value */
     }
     .group-row td { background:#eef2ff; font-weight:700; text-align:left; }
     .avg { font-weight:700; }
@@ -285,7 +313,7 @@
 
     .accordion {
       border: 0px solid var(--border);
-      border-radius: 10px;
+      border-radius: 0;
       overflow: hidden;
       margin: 0px 0 1px;
     }
@@ -296,8 +324,8 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      padding: 12px 14px;
-      background: var(--bg2);
+      padding: 3px 14px;
+      background: #e8f1e8;
       border: 0;
       cursor: pointer;
       font: inherit;
@@ -305,7 +333,7 @@
     }
 
     .accordion-header:hover {
-      background: #f3f4f6;
+      background: #dae5da;
     }
 
     .accordion-title {
@@ -383,10 +411,10 @@
               <a href="http://blog.goedel-prover.com" style="text-decoration: none; color: inherit;">🎯 Fill Your Model's Skill Gaps</a>
             </h2> -->
             <div class="is-size-4 publication-authors" style="font-size: 1.6rem;">
-              <span class="author-block"><a href="https://ying-hui-he.github.io/" style="text-decoration: none; color: inherit;">Yinghui He</a><sup>*</sup></span>
-              <span class="author-block"><a href="https://abhishekpanigrahi1996.github.io/" style="text-decoration: none; color: inherit;">Abhishek Panigrahi</a><sup>*</sup></span>
-               <span class="author-block"><a href="https://linyongver.github.io/Website/" style="text-decoration: none; color: inherit;">Yong Lin</a></span>
-              <span class="author-block"><a href="https://www.cs.princeton.edu/~arora/" style="text-decoration: none; color: inherit;">Sanjeev Arora</a></span>
+              <span class="author-block"><a href="https://ying-hui-he.github.io/" class="author-name" style="text-decoration: none; color: inherit;">Yinghui He</a><sup>*</sup></span>
+              <span class="author-block"><a href="https://abhishekpanigrahi1996.github.io/" class="author-name" style="text-decoration: none; color: inherit;">Abhishek Panigrahi</a><sup>*</sup></span>
+               <span class="author-block"><a href="https://linyongver.github.io/Website/" class="author-name" style="text-decoration: none; color: inherit;">Yong Lin</a></span>
+              <span class="author-block"><a href="https://www.cs.princeton.edu/~arora/" class="author-name" style="text-decoration: none; color: inherit;">Sanjeev Arora</a></span>
             </div>
             
             <div class="affiliations" style="font-size: 1.25rem;">
@@ -400,16 +428,16 @@
             </div>
             <div class="author-avatars" style="display: flex; justify-content: center; margin-top: 1rem; gap: 1.5rem;">
               <a href="https://ying-hui-he.github.io/" target="_blank" title="Yinghui He">
-                <img src="images/yinghui.jpg" alt="Yinghui He" style="width:85px; height:85px; border-radius:50%; object-fit:cover; border:0px solid #fff; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <img src="images/yinghui.jpg" alt="Yinghui He" class="avatar-img" style="width:85px; height:85px; border-radius:50%; object-fit:cover; border:0px solid #fff; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
               </a>
               <a href="https://abhishekpanigrahi1996.github.io/" target="_blank" title="Abhishek Panigrahi">
-                <img src="images/ap2.png" alt="Abhishek Panigrahi" style="width:85px; height:85px; border-radius:50%; object-fit:cover; border:0px solid #fff; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <img src="images/ap2.png" alt="Abhishek Panigrahi" class="avatar-img" style="width:85px; height:85px; border-radius:50%; object-fit:cover; border:0px solid #fff; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
               </a>
               <a href="https://linyongver.github.io/Website/" target="_blank" title="Yong Lin">
-                <img src="images/yong.png" alt="Yong Lin" style="width:85px; height:85px; border-radius:50%; object-fit:cover; border:0px solid #fff; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <img src="images/yong.png" alt="Yong Lin" class="avatar-img" style="width:85px; height:85px; border-radius:50%; object-fit:cover; border:0px solid #fff; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
               </a>
               <a href="https://www.cs.princeton.edu/~arora/" target="_blank" title="Sanjeev Arora">
-                <img src="images/sanjeev.png" alt="Sanjeev Arora" style="width:85px; height:85px; border-radius:50%; object-fit:cover; border:0px solid #fff; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <img src="images/sanjeev.png" alt="Sanjeev Arora" class="avatar-img" style="width:85px; height:85px; border-radius:50%; object-fit:cover; border:0px solid #fff; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
               </a>
             </div>
 
@@ -454,7 +482,7 @@
       <p style="font-size: 1.1rem;">
         <!-- <span style="color: #388e3c;"> -->
           Skill-Targeted Adaptive Training (STAT) is a lightweight data curation method that enables efficient <b>continual learning on unseen tasks</b>. It constructs a model-specific <b style="color: #C2726E;">🧱Missing-Skill Profile</b>, then adapts the distribution of training data either by reweighting existing datasets, or synthesizing new data in a skill-targeted manner. A few highlights in performance of STAT:
-          <ul style="font-size: 1.05rem; margin-left: 1.5em; margin-bottom: 1em;">
+          <ul style="font-size: 1.1rem; margin-left: 1.5em; margin-bottom: 1em;">
             <li><b>Effectiveness:</b> STAT boosts performance on MATH by +7.5% on average, even when models are already over-trained and "saturated" on it.</li>
             <li><b>Generalizability:</b> Despite only training on MATH-level data, our method is well generalized to challenging out-of-distribution (OOD) datasets including AIME2024/2025, AMC23, MATH<sup>2</sup>, and MATH-perturb-hard.</li>
             <!-- <li><b>Adaptability to new tasks:</b> </li> -->
@@ -1024,7 +1052,7 @@
 
                 if (!isGRPO) {
                   const title = document.createElement("div");
-                  title.className = "section-title";
+                  title.className = "table-section-title";
                   title.textContent = block.title;
                   wrapper.appendChild(title);
                 }
@@ -1109,7 +1137,7 @@
               <b>Takeaways:</b>
              Applying STAT-Sel and STAT-Syn teaching on Llama and Qwen models with MATH data shows the following:
           
-             <ol style="padding-left: 1em; font-size: 0.95em;">
+             <ol style="padding-left: 1em;">
                <li><u>Substantial in-distribution gains:</u> STAT achieves improvement on MATH by up to 7.5%, whereas naive fine-tuning yields negligible gains. Previous embedding-based data selection strategies that adapt to the student's validation errors are found ineffective.</li>
           
                <li><u>Strong out-of-distribution (OOD) generalization:</u> Improvements in difficult and OOD benchmarks such as AIME24/25 and AMC23 highlight the general utility of skill-targeted training.</li>
@@ -1153,7 +1181,7 @@
               <p>
                 We closely examined the Missing-Skill-Profile across different models, obtained at the end of <a class="toc-link" href="#stage2"><b>Stage 2</b></a>. We present the Top 10 frequently missing skills for each model according to their Missing-Skill-Profile below. The key observations are:</p>
 
-                <ol style="padding-left: 1em; font-size: 0.95em;">
+                <ol style="padding-left: 1em;">
                   <li><strong>Algebra-centric skills appear at the top</strong>, e.g., manipulating equations, handling expressions, and solving linear forms. This suggests that even though both Llama and Qwen models achieve high performance on MATH, they systematically struggle with operation computations.</li>
                   <li><strong>Most missing skills are shared across models</strong>, e.g., equation-solving skills and basic arithmetic operations are missing in different model families (Llama and Qwen) and sizes (1B and 3B). However, smaller models show more frequent weaknesses in basic computational skills like arithmetic.</li>
                 </ol>
@@ -1163,7 +1191,7 @@
             <div style="margin: 2.5rem 0 2.5rem 0;">
               <img src="images/skill-profile.png" alt="Skill Profile" style="width: 100%; height: auto; border-radius: 0.75rem; display: block;"/>
             </div>
-          </div>
+          </div><br>
 
           <div id="skill-improve">
             <!-- <h2 class="title is-3">Core Problem in Continual Learning</h2> -->
@@ -1179,7 +1207,7 @@
             <div style="margin: 2.5rem 0 2.5rem 0;">
               <img src="images/skill-improve.png" alt="STAT Skill Improvement" style="width: 100%; height: auto; border-radius: 0.75rem; display: block;"/>
             </div>
-          </div>
+          </div><br>
 
           <div id="case-study">
             <!-- <h2 class="title is-3">Core Problem in Continual Learning</h2> -->
