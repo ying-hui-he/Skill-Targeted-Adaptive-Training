@@ -10,29 +10,41 @@
   <meta name="keywords" content="Goedel-Prover, Theorem Prover, Language Model, AI in Math">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="https://github.com/Goedel-LM/Goedel-Prover-V2/blob/main/assets/logo.png?raw=true">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
+    :root {
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+
     body {
-      font-family: 'Noto Sans', sans-serif;
+      font-family: var(--font-sans);
+      line-height: 1.8;
+      font-weight: 400;
+    }
+
+    .content p {
+      margin-bottom: 1.25rem;
     }
 
     .hero {
-      background-color: #f8f9fa;
+      background-color: #f8f4f3;
     }
     
     .publication-title {
-      font-family: 'Google Sans', sans-serif;
+      font-family: var(--font-sans);
+      font-weight: 700;
     }
 
     .publication-subtitle {
-       font-family: 'Google Sans', sans-serif;
+       font-family: var(--font-sans);
     }
 
     .publication-authors {
-      font-family: 'Google Sans', sans-serif;
+      font-family: var(--font-sans);
     }
     
     .author-block {
@@ -202,11 +214,137 @@
       color: #00d1b2;
     }
 
+    .section {
+      padding: 2rem 1.5rem;
+    }
+
+  </style>
+
+  <!-- For math -->
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+  <!-- For result table -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Results Table (Tabbed)</title>
+  <style>
+    :root { --border:#e5e7eb; --muted:#6b7280; --bg:#ffffff; --bg2:#f9fafb; }
+    body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+           margin: 24px; color:#111827; background: var(--bg); }
+           .tabs { 
+              display:flex; 
+              gap:10px; 
+              justify-content:center;
+              border-bottom:1px solid var(--border); 
+              padding-bottom:10px; 
+              margin-bottom:16px; 
+              flex-wrap:wrap;
+            }
+    .tabbtn { border:1px solid var(--border); background:var(--bg2); padding:8px 12px; border-radius:10px; cursor:pointer; }
+    .tabbtn[aria-selected="true"] { background:#111827; color:white; border-color:#111827; }
+    .panel { display:none; }
+    .panel.active { display:block; }
+
+    .section-title { 
+      margin: 10px 0 6px; 
+      font-weight:700; 
+      text-align:center;   /* <-- add this */
+    }
+    .subnote { color:var(--muted); font-size: 14px; margin-bottom: 8px; }
+
+    table { width:100%; border-collapse:collapse; overflow:hidden; border:1px solid var(--border); border-radius:12px; }
+    thead th { background:var(--bg2); font-weight:700; font-size:15px; border-bottom:1px solid var(--border); }
+    th, td { padding:10px 10px; text-align:right; border-bottom:1px solid var(--border); }
+    th:first-child, td:first-child { text-align:left; white-space:nowrap; }
+    tbody tr:hover td { background:#fafafa; }
+    tbody td {
+      font-size: 14px; /* change this value */
+    }
+    .group-row td { background:#eef2ff; font-weight:700; text-align:left; }
+    .avg { font-weight:700; }
+    .methods-strong { font-weight:800; }
+    .wrap { 
+      max-width: 1400px; 
+      margin: 0 auto;
+      width: 70vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -34vw;
+      margin-right: -50vw;
+      margin-bottom: 4vw;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    .foot { margin-top:10px; color:var(--muted); font-size:10px; }
+
+    .accordion {
+      border: 0px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 0px 0 1px;
+    }
+
+    .accordion-header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      background: var(--bg2);
+      border: 0;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+    }
+
+    .accordion-header:hover {
+      background: #f3f4f6;
+    }
+
+    .accordion-title {
+      flex: 1;
+      text-align: center;
+    }
+
+    .accordion-panel {
+      padding: 10px 10px 12px;
+      background: var(--bg);
+    }
+
+    .accordion-icon {
+      transition: transform 160ms ease;
+      font-size: 35px;
+      line-height: 1;
+    }
+
+    .accordion-header[aria-expanded="true"] .accordion-icon {
+      transform: rotate(180deg);
+    }
+
+    .best {
+      font-weight: 800;
+    }
+
+    .second {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 2px;
+    }
+
+    /* For case study */
+    
   </style>
 </head>
 
 <body>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <!-- <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="container">
       <div class="navbar-brand">
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
@@ -231,7 +369,7 @@
         </div>
       </div>
     </div>
-  </nav>
+  </nav> -->
 
   <section class="hero">
     <div class="hero-body">
@@ -241,21 +379,42 @@
             <h1 class="title is-1 publication-title is-bold">
               Skill-Targeted Adaptive Training
             </h1>
-            <h2 class="subtitle is-3 publication-subtitle">
+            <!-- <h2 class="subtitle is-3 publication-subtitle">
               <a href="http://blog.goedel-prover.com" style="text-decoration: none; color: inherit;">🎯 Fill Your Model's Skill Gaps</a>
-            </h2>
-            <div class="is-size-5 publication-authors">
+            </h2> -->
+            <div class="is-size-4 publication-authors" style="font-size: 1.6rem;">
               <span class="author-block"><a href="https://ying-hui-he.github.io/" style="text-decoration: none; color: inherit;">Yinghui He</a><sup>*</sup></span>
               <span class="author-block"><a href="https://abhishekpanigrahi1996.github.io/" style="text-decoration: none; color: inherit;">Abhishek Panigrahi</a><sup>*</sup></span>
                <span class="author-block"><a href="https://linyongver.github.io/Website/" style="text-decoration: none; color: inherit;">Yong Lin</a></span>
               <span class="author-block"><a href="https://www.cs.princeton.edu/~arora/" style="text-decoration: none; color: inherit;">Sanjeev Arora</a></span>
             </div>
-            <div class="affiliations">
+            
+            <div class="affiliations" style="font-size: 1.25rem;">
                 <!-- <p> <sup>*</sup>Equal Contribution
                 <br> -->
-                Princeton Language and Intelligence, Princeton University
-                <br><br>
+                <span style="display:inline-flex; align-items:center; gap:0.5rem;">
+                  <img src="images/pton.png" alt="STAT Logo" style="height:1.5em; width:auto; vertical-align:middle; border-radius: 0.25em;">
+                  <a href="https://pli.princeton.edu/" target="_blank" style="text-decoration: none; color: inherit;">Princeton Language and Intelligence</a>, Princeton University
+                </span>
+                
             </div>
+            <div class="author-avatars" style="display: flex; justify-content: center; margin-top: 1rem; gap: 1.5rem;">
+              <a href="https://ying-hui-he.github.io/" target="_blank" title="Yinghui He">
+                <img src="images/yinghui.jpg" alt="Yinghui He" style="width:85px; height:85px; border-radius:50%; object-fit:cover; border:0px solid #fff; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+              </a>
+              <a href="https://abhishekpanigrahi1996.github.io/" target="_blank" title="Abhishek Panigrahi">
+                <img src="images/ap2.png" alt="Abhishek Panigrahi" style="width:85px; height:85px; border-radius:50%; object-fit:cover; border:0px solid #fff; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+              </a>
+              <a href="https://linyongver.github.io/Website/" target="_blank" title="Yong Lin">
+                <img src="images/yong.png" alt="Yong Lin" style="width:85px; height:85px; border-radius:50%; object-fit:cover; border:0px solid #fff; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+              </a>
+              <a href="https://www.cs.princeton.edu/~arora/" target="_blank" title="Sanjeev Arora">
+                <img src="images/sanjeev.png" alt="Sanjeev Arora" style="width:85px; height:85px; border-radius:50%; object-fit:cover; border:0px solid #fff; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+              </a>
+            </div>
+
+            <br><br>
+            
 
             <div class="badges">
               <a href="https://arxiv.org/abs/2510.10023" class="badge" target="_blank" rel="noopener">
@@ -280,11 +439,41 @@
   </section>
 
 <section style="max-width: 1000px; margin: 0 auto; padding: 2rem 1rem;">
-    <div class="columns is-centered has-text-centered"> <h2 class="title is-3">Key Achievements  </h2></div>
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+    <!-- <div class="columns is-centered has-text-centered"> 
+      <h2 class="title is-3">Key Achievements  </h2>
+    </div> -->
+
+    <blockquote style="font-size: 1.15rem; font-style: italic; color: #6c6c6c; border-left: 4px solid #dfaaa7; margin: 2rem 0 2.5rem 0; padding: 1rem 1.5rem; background: #f8f4f3;">
+      “We do not learn from experience... we learn from <b> reflecting on experience </b>.”<br>
+      <span style="font-size: 1rem; font-weight: 500; color: #6c6c6c; display: block; text-align: right; font-style: normal;">— John Dewey</span>
+    </blockquote>
+    <div class="content has-text-left">  
+      <p style="font-size: 1.1rem;">
+        <!-- <span style="color: #388e3c;"> -->
+          Skill-Targeted Adaptive Training (STAT) is a lightweight data curation method that enables efficient <b>continual learning on unseen tasks</b>. It constructs a model-specific <b style="color: #C2726E;">🧱Missing-Skill Profile</b>, then adapts the distribution of training data either by reweighting existing datasets, or synthesizing new data in a skill-targeted manner. A few highlights in performance of STAT:
+          <ul style="font-size: 1.05rem; margin-left: 1.5em; margin-bottom: 1em;">
+            <li><b>Effectiveness:</b> STAT boosts performance on MATH by +7.5% on average, even when models are already over-trained and "saturated" on it.</li>
+            <li><b>Generalizability:</b> Despite only training on MATH-level data, our method is well generalized to challenging out-of-distribution (OOD) datasets including AIME2024/2025, AMC23, MATH<sup>2</sup>, and MATH-perturb-hard.</li>
+            <!-- <li><b>Adaptability to new tasks:</b> </li> -->
+            <li><b>Compatability to subsequent reinforcement-learning (RL) training:</b> paired with subsequent RL training, STAT can be seen as a more effective SFT warmup.</li>
+          </ul>
+          
+        <div style="margin: 2.5rem 0 2.5rem 0;">
+          <img src="images/performance.png" alt="STAT performance" style="width: 100%; height: auto; border-radius: 0.75rem; display: block;"/>
+        </div>
+        <!-- </span> -->
+      </p>
+      </div>
+    </div>
+    </div>
+    </div>
    
-    <div style="background: #f8f9fa; border-radius: 1rem; padding: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+    <!-- <div style="background: #f8f9fa; border-radius: 1rem; padding: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1);"> -->
       
-      
+<!--       
       <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; text-align: center;">  
         
 
@@ -317,8 +506,8 @@
         </div>
         
 
-      </div>
-    </div>
+      </div> -->
+    <!-- </div> -->
   
   </section>
 
@@ -327,59 +516,262 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
-          <h2 class="title is-3">Introduction</h2>
-    
-          <div class="content has-text-justified">
-            <p>
-              Language models often show little to no improvement (i.e., “saturation”) when trained via vanilla supervised fine-tuning (SFT) on data similar to what they saw in their training set (e.g., MATH). <b>We introduce a new fine-tuning strategy, STAT, to train such a student model by using the metacognition ability of a stronger large language model (LLM) as the teacher.</b> The teacher uses the task dataset to create a list of skills needed for the task, and then labels each data point with its required skills. By monitoring the student's answers, the teacher creates a <b>Missing-Skill-Profile</b> for the student, tracking how often they failed to apply each skill in their responses. We use this idea to build a skill-targeted adaptive training set. 
-              
-              <!-- In STAT-Sel, the teacher uses an existing set of training examples but adaptively reweights them according to the Missing-Skill-Profile. In STAT-Syn, the teacher synthesizes additional examples involving missing skills. Across extensive experiments on Llama and Qwen models, our methods yield improvements of up to 7.5% on MATH, whereas SFT provides only limited gains. Furthermore, STAT enhances performance on out-of-distribution benchmarks (e.g., AIME24/25, AMC23, etc.) by an average of 4.6%. Crucially, we find that STAT is complementary to RL via GRPO (Shao et al., 2024): after the model is improved using STAT to address skill gaps, GRPO continues to add further gains. We conclude that skill-targeted adaptive training should broadly improve current training pipelines. -->
-            </p>
+          <h2 class="title is-3">Core Problem in Continual Learning</h2>
+          <h3 class="subtitle is-5" style="text-align: center; color: #5a5a5a; font-size: 1.25rem; margin-bottom: 1.5rem;">
+            The "Saturation" Effect
+          </h3>
 
-            <img src="images/Picture1.png" alt="Methodology" style="display:block; margin:0 auto;width: 100%; height: auto; object-fit: contain;">
-            <br>
+          <div class="content has-text-left"> 
             <p>
-              <b>Method Overview:</b> Our pipeline starts with a list of relevant skills for the problem (SkillMap) created via teacher metacognition, and performs the following three stages. First, we use the teacher to evaluate the student model on a small validation set of questions and use a reward model to identify the questions that are difficult for the student. Second, we create a Missing-Skill-Profile by using the teacher to check the missing skills in the model responses. Our first method <b><i>STAT-Sel</i></b> simply up-weights training examples using the Missing-Skill-Profile; in effect, this guides the student to focus on their deficiencies. Our second (more expensive) method <b><i>STAT-Syn</i></b>  uses the teacher to generate synthetic training data using in-context examples from the validation set associated with a list of deficient skills in Missing-Skill-Profile.
+              Supervised fine-tuning (SFT) is a standardized process in recent model training pipeline, often enabling strong model performance on domain-specific tasks such as mathematics. However, using SFT as an approach to continual learning is often inefficient and data hungry.<sup>[1]</sup>
+              For instance, smaller models' performance often becomes stagnant when continually trained on data of this difficulty level.
+
             </p>
             <p>
-             <b>Key Results:</b> 
-            Applying STAT-Sel and STAT-Syn teaching on Llama and Qwen models with the popular MATH data shows the following:
-
-<ol style="padding-left: 30px;">
-  <li><b>Substantial in-distribution gains:</b> STAT achieves improvement on MATH by up to 7.5%, whereas naive fine-tuning yields negligible gains. Previous embedding-based data selection strategies that adapt to the student's validation errors are found ineffective.</li>
-
-  <li><b>Strong out-of-distribution (OOD) generalization:</b> Improvements in difficult and OOD benchmarks such as AIME24/25 and AMC23 highlight the general utility of skill-targeted training.</li>
-
-  <li><b>Adaptivity to evolving tasks:</b> STAT-Sel and STAT-Syn can be continually adapted to new, harder evaluation settings (e.g., new validation sets) while still leveraging the same training set.</li>
-
-  <li><b>Supplementary benefits over reinforcement learning (RL):</b> STAT followed by RL improves upon RL-only training such as GRPO, suggesting that STAT is likely to prove relevant to most training pipelines today.</li>
-</ol>
-
-<p>We conduct extensive ablations to pinpoint the success of our proposed methods. A fine-grained skill-level analysis reveals that even when models have been extensively trained on MATH, they struggle on basic operation skills such as basic algebra. By explicitly targeting these basic skills, our methods reduce such errors and improve generation performance, including on out-of-distribution tasks. In contrast, alternative approaches such as embedding-based methods often underperform, as they do not explicitly address these skill gaps. Thus, our findings highlight the importance of skill-targeted adaptive training for advancing model performance.</p>
+            Previous work suggested that this <b>"saturation"</b> effect happens because the loss is an average over data points, causing the training signal to diminish as the model becomes adept at most of the training
+            examples.<sup>[2]</sup> In addition, there is a mismatch between the
+            “average” next-token prediction loss used during training vs. benchmark evaluation metrics.<sup>[3]</sup>
             </p>
+
+            <p>
+              To tackle the saturation effect, the key idea is to <b>focus the next-token prediction loss on an adapted set of examples targeted towards good generation.</b> Prior works mainly head towards two directions: 
+
+              <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+              <li><b>⚖️ Select influential data:</b> using embeddings or gradient-
+                based estimates to pick training examples most relevant to reducing loss on a reference
+                validation set.<sup>[4][5]</sup> </li>
+              <li><b>⚗️ Synthesize difficult data:</b> generating synthetic data to instill new skills.<sup>[6][7]</sup></li>
+            </ul>
+          </p>
+            
+          <p>
+            However, these methods can be limited when applied to continual learning settings. For example, using gradient or embedding information to select influential data is task-specific in its nature, therefore not necessarily generalizable to OOD benchmarks. In comparison, synthesizing difficult data is generalizable, but is much more expensive and harder to verify, especially under the dominance of grad-school-level math benchmarks.
+          </p>
+          
+          <p>
+          In this work, we aim at unifying data selection and data synthesization, tackling the limitations of each. We introduce the concept of <b style="color: #C2726E;">🧱Missing-Skill Profile</b> -- the distribution of skills that the model struggles with. The construction of Missing-Skill Profile is model-specific, depending on the certain set of questions where the model underperform. By <b>selecting data according to the Missing-Skill Profile</b>, we enhanced the generalizability of the data selection process. By <b>synthesizing data according to the Missing-Skill Profile</b>, we constrain the difficulty of synthetic data to a reasonable level, making the pipeline cost-effective and easy to verify.
+          </p>
+
+
           </div>
+
+
+          
         </div>
       </div>
     </div>
   </section>
 
-
 <section class="section" id="methodology">
     <div class="container is-max-desktop">
-        <div class="section-title has-text-centered">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div class="section-title has-text-centered">
             <h2 class="title is-3">Our Methodology</h2>
             <!-- <p>A cycle of data synthesis, iterative training, and novel refinement techniques.</p> -->
-        </div>
-        <div class="columns is-multiline is-centered">
+            <h3 class="subtitle is-5" style="text-align: center; color: #5a5a5a; font-size: 1.25rem; margin-bottom: 1.5rem;">
+              Skill-Targeted Adaptive Training (STAT)
+            </h3>
+          </div>
+
+          <p>
+            <b>We introduce a new fine-tuning strategy, STAT, to train a model by leveraging the self-reflection capability of a teacher LLM.</b> The teacher uses the task dataset to create a list of skills needed for the task, and then labels each data point with its required skills. By monitoring the student's answers, the teacher creates a Missing-Skill-Profile for the student, tracking how often they failed to apply each skill in their responses. We then use this idea to build a skill-targeted adaptive training set. 
+            
+            <!-- In STAT-Sel, the teacher uses an existing set of training examples but adaptively reweights them according to the Missing-Skill-Profile. In STAT-Syn, the teacher synthesizes additional examples involving missing skills. Across extensive experiments on Llama and Qwen models, our methods yield improvements of up to 7.5% on MATH, whereas SFT provides only limited gains. Furthermore, STAT enhances performance on out-of-distribution benchmarks (e.g., AIME24/25, AMC23, etc.) by an average of 4.6%. Crucially, we find that STAT is complementary to RL via GRPO (Shao et al., 2024): after the model is improved using STAT to address skill gaps, GRPO continues to add further gains. We conclude that skill-targeted adaptive training should broadly improve current training pipelines. -->
+          </p>
+
+          <img src="images/method.png" alt="Methodology" style="display:block; margin:0 auto;width: 100%; height: auto; object-fit: contain;">
+          <br>
+          <!-- <h3 class="subtitle is-5" style="text-align: center; color: #5a5a5a; font-size: 1.25rem; font-weight:bold; margin-bottom: 1.5rem;">
+            <b>Method Overview</b>
+          </h3> -->
+          <div class="content has-text-left">
+            
+
+          <p>
+            <style>
+              .toc-link {
+                color: #748A6F !important;
+                text-decoration: underline !important;
+              }
+            </style>
+            
+            <p>
+              <b>Method Overview:</b> Our pipeline starts with a list of relevant skills for the problem (SkillMap) curated by teacher model, and performs the following three stages. In <a class="toc-link" href="#stage1"><b>Stage 1</b></a>, we use the teacher to evaluate the student model on a small validation set of questions and use a reward model to identify the questions that are difficult for the student. In <a class="toc-link" href="#stage2"><b>Stage 2</b></a>, we create a Missing-Skill-Profile by using the teacher to check the missing skills in the model responses. In <a class="toc-link" href="#stage3"><b>Stage 3</b></a>, our first method variant <a class="toc-link" href="#stat-sel"><b>STAT-Sel</b></a> simply up-weights training examples using the Missing-Skill-Profile; in effect, this guides the student to focus on their deficiencies. Our second method variant <a class="toc-link" href="#stat-syn"><b>STAT-Syn</b></a>  uses the teacher to generate synthetic training data using in-context examples from the validation set associated with a list of deficient skills in Missing-Skill-Profile.
+            
+            </p>
+            <!-- <ol>
+              <li>
+                <a class="toc-link" href="#stage1"><b>Stage 1: Detection of difficult questions via reward filtering. </b></a>
+              </li>
+              <li>
+                <a class="toc-link" href="#stage2"><b>Stage 2: Missing-Skill Profiling</b> explanation</a>
+                <ul>
+                  <li>Evaluate the student model on a small validation set.</li>
+                  <li>Use a reward model to pinpoint difficult questions.</li>
+                  <li>Build a <b>Missing-Skill-Profile</b> highlighting specific skill gaps by analyzing incorrect responses.</li>
+                </ul>
+              </li>
+              <li>
+                <a class="toc-link" href="#stage3"><b>Stage 3:</b></a>
+                <ul>
+                  <li>
+                    <a class="toc-link" href="#stat-sel"><b>STAT-Sel:</b></a>
+                    <ul>
+                      <li>Adjust training weights to emphasize examples aligned with the identified missing skills.</li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a class="toc-link" href="#stat-syn"><b>STAT-Syn:</b></a>
+                    <ul>
+                      <li>Generate synthetic training data aligned with the student's specific skill deficiencies.</li>
+                      <li>Use in-context examples from the validation set for effective and targeted data synthesis.</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ol> -->
+          </p>
+          </div>
+
+          <div id="stage1">
+            <!-- <h2 class="title is-3">Core Problem in Continual Learning</h2> -->
+            <h3 class="subtitle is-5" style="text-align: center; color: #5a5a5a; font-size: 1.25rem; font-weight:bold; margin-bottom: 1.5rem;">
+              <b>Stage 1: Detection of difficult questions via reward filtering </b>
+            </h3>
+  
+            <div class="content has-text-left">
+
+              <p class="lead">
+                As we primarily focus on math datasets, we assume that the model's response is composed of
+                \(t\) steps for a question \(q\) and contains the answer in its final step. We will use a process reward
+                model to output reward scores for each step. For simplicity, we will refer to the scores of
+                the reward model as \(\{r_{q,1}, \cdots, r_{q,t}\}\). Then, we use thresholds \(\tau_1, \tau_2\) to
+                filter out difficult questions \(Q_{\text{difficult}}\) for the student model. 
+                <!-- We will refer to the threshold filtering
+                function as \(Classification : Q \rightarrow \{difficult, easy\}\). -->
+              </p>
+            
+              <div class="eq" style="font-size: 0.85em;">
+                \[
+                q \in Q_{\text{difficult}} \iff
+                \begin{aligned}
+                & r_{q,t}\le \tau_1, \text{or }
+                && \text{(final step has low reward)}\\
+                & \frac{1}{t}\sum_{i=1}^{t} r_{q,i}\le \tau_1, \text{or }
+                && \text{(average low reward across all steps)}\\
+                & \exists i < t \text{ s.t. } r_{q,i}\le \tau_2.
+                && \text{(low reward at any step)}
+                \end{aligned}
+                \]
+                
+              </div>
+            
+            </div>
+          </div>
+          <br>
+          <div id="stage2">
+            <!-- <h2 class="title is-3">Core Problem in Continual Learning</h2> -->
+            <h3 class="subtitle is-5" style="text-align: center; color: #5a5a5a; font-size: 1.25rem; font-weight:bold; margin-bottom: 1.5rem;">
+              <b>Stage 2: Constructing model-specific Missing-Skill-Profile </b>
+            </h3>
+  
+            <div class="content has-text-left">
+              <p>
+                For each <i>difficult</i> question \(q \in Q_{\text{difficult}}\), we use a frontier model
+                (GPT-4o-mini) to predict the set of skills in \(S\) that are missing in the model's responses.
+                We call this map <b>Missing-Skill-Profile</b>: \(Q_{\text{difficult}} \rightarrow S\).
+                This map will be used to build our skill-targeted training dataset in Stage 3.
+              </p>
+            </div>
+
+            <div style="max-width: 900px; border: 2px solid #748A6F; border-radius: 10px; overflow: hidden; font-family: Georgia, 'Times New Roman', serif;">
+
+              <!-- Header bar -->
+              <div style="background: #748A6F; color: #fff; padding: 5px 7px; font-size: 15px; font-weight: 600;">
+                Example skill annotation prompt for MATH Number Theory questions
+              </div>
+            
+              <!-- Content -->
+              <div style="padding: 18px; font-size: 14px; line-height: 1.5; background-color: #fbfefa;">
+            
+                <p><b>[TASK]</b><br>
+                  You'll be given a math question and a step-by-step solution written by a Small
+                  Language Model. Your task is to output:<br>
+                (1) <code>&lt;judge&gt;</code> judge here whether the solution is correct or incorrect <code>&lt;/judge&gt;</code>.<br>
+                (2) <code>&lt;reason&gt;</code> if it's incorrect, reason here why the solution is incorrect <code>&lt;/reason&gt;</code>.<br>
+                (3) <code>&lt;skill&gt;</code> list here what skill(s) should the SLM enhance in order to answer correctly,
+                seperated by commas <code>&lt;/skill&gt;</code>.
+                </p><br>
+            
+                <p><b>[SKILL LIST]</b><br>
+                You should only choose the skills from this list:
+                </p>
+            
+                <pre style="background:#f7f7f7; padding:5px; border-radius:6px; font-size:12px;">
+            ["arithmetic_sequences", "base_conversion", "basic_arithmetic", "division_and_remainders", "exponentiation", "factorization", "greatest_common_divisor_calculations", "modular_arithmetic", "number_manipulation",  "number_theory", "polynomial_operations", "prime_number_theory", "sequence_analysis", "solving_equations", "understanding_of_fractions"]
+                </pre><br>
+            
+                <p><b>[QUESTION]</b><br>
+                  In how many different ways can 12 dimes be divided into three piles with an odd number of dimes in each pile?
+                </p><br>
+            
+                <p><b>[YOUR OUTPUT]</b></p>
+            
+              </div>
+            </div>
+          </div>
+            <br><br>
+            <div id="stage3">
+              <!-- <h2 class="title is-3">Core Problem in Continual Learning</h2> -->
+              <h3 class="subtitle is-5" style="text-align: center; color: #5a5a5a; font-size: 1.25rem; font-weight:bold; margin-bottom: 1.5rem;">
+                <b>Stage 3: Curating skill-targeted training data </b>
+              </h3>
+    
+              <div class="content has-text-left">
+
+                <p>
+                  In this stage, we construct our skill-targeted training dataset, 
+                  \(\mathcal{P}_{\text{targeted}}\), from an existing dataset \(\mathcal{P}\) such as MATH.
+                </p>
+                <div id="stat-sel">
+                  <p>
+                    <b>STAT-Sel:</b> We create this set by directly sampling questions from the training dataset 
+                    \(\mathcal{P}\) according to the skills listed in the Missing-Skill-Profile. Specifically, for each 
+                    question \(q \in Q_{\text{difficult}}\), we examine 
+                    Missing-Skill-Profile\((q)\) and, for every skill it contains, sample multiple questions from 
+                    \(\mathcal{P}\) that are linked to the same skill via the Skill-Map. Consequently, the frequency 
+                    with which a skill contributes to the selection process is proportional to the number of questions 
+                    associated with that skill in the Missing-Skill-Profile.
+                  </p>
+                </div>
+                
+                <div id="stat-syn">
+                <p>
+                  <b>STAT-Syn:</b> We generate new synthetic questions using the teacher model. For each question 
+                  \(q \in Q_{\text{difficult}}\), we examine Missing-Skill-Profile\((q)\). For each skill it 
+                  contains, we randomly sample 3 questions from \(\mathcal{P}\) that are linked to the same skill via 
+                  the Skill-Map, and ask the teacher model to propose a question by referring to the 
+                  sampled questions. Then, we use the teacher model to solve each question 3 times. We keep only those questions where the teacher model is consistent across at least 2 of its responses, and keep only those question-answer pairs in our training set.
+                </p>
+                </div>
+              </div>
+          </div>
+
+<!-- 
+          <div class="columns is-multiline is-centered">
             <div class="column is-half">
                 <div class="method-card">
                     <div class="is-flex is-align-items-center mb-3">
                         <p class="icon">
                           <i class="fas fa-stethoscope" style="color: #8FA58B;"></i>
                         </p>
-                        <h3 style="font-size: 17px;">Adaptive Difficult Question Detection </h3>
+                        <h3 style="font-size: 20px;">Adaptive Difficult Question Detection </h3>
                     </div>
-                    <p></p>
+                    <p>
+                      
+
+                    </p>
                 </div>
             </div>
             <div class="column is-half">
@@ -388,7 +780,7 @@
                         <p class="icon">
                           <i class="fas fa-puzzle-piece" style="color: #8FA58B;"></i>
                         </p>
-                        <h3 style="font-size: 17px;">Model-specific Missing-Skill-Profile</h3>
+                        <h3 style="font-size: 20px;">Model-specific Missing-Skill-Profile</h3>
                     </div>
                     <p></p>
                 </div>
@@ -399,7 +791,7 @@
                         <p class="icon">
                           <i class="fas fa-balance-scale" style="color: #E69B97;"></i>
                         </p>
-                        <h3 style="font-size: 17px;">Simply Reweight Existing Dataset </h3>
+                        <h3 style="font-size: 20px;">Simply Reweight Existing Dataset </h3>
                     </div>
                     <p></p>
                 </div>
@@ -410,16 +802,607 @@
                         <p class="icon">
                           <i class="fas fa-flask" style="color: #E69B97;"></i>
                         </p>
-                        <h3 style="font-size: 17px;">Synthesize Skill-Targeted Questions</h3>
+                        <h3 style="font-size: 20px;">Synthesize Skill-Targeted Questions</h3>
                     </div>
                     <p></p>
                 </div>
             </div>
-        </div>
+          </div>
+        </div> -->
+      </div>
     </div>
   </section>
 
- 
+  <section class="section" id="result">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div class="section-title has-text-centered">
+            <h2 class="title is-3">Experimental Results</h2>
+            <!-- <h3 class="subtitle is-5" style="text-align: center; color: #5a5a5a; font-size: 1.25rem; margin-bottom: 1.5rem;">
+              Skill-Targeted Adaptive Training (STAT)
+            </h3> -->
+          </div><br>
+
+          <div class="wrap">
+            <div class="tabs" role="tablist" aria-label="Model results">
+              <button class="tabbtn" role="tab" aria-selected="true"  aria-controls="panel-0" id="tab-0">Llama-3.2-3B-Instruct</button>
+              <button class="tabbtn" role="tab" aria-selected="false" aria-controls="panel-1" id="tab-1">Llama-3.2-1B-Instruct</button>
+              <button class="tabbtn" role="tab" aria-selected="false" aria-controls="panel-2" id="tab-2">Qwen2.5-3B</button>
+            </div>
+          
+            <section class="panel active" role="tabpanel" id="panel-0" aria-labelledby="tab-0"></section>
+            <section class="panel" role="tabpanel" id="panel-1" aria-labelledby="tab-1"></section>
+            <section class="panel" role="tabpanel" id="panel-2" aria-labelledby="tab-2"></section>
+          
+          </div>
+          
+          <script>
+            // Columns (same for all models)
+            const columns = [
+              { key: "method", label: "Methods", align: "left" },
+              { key: "math", label: "MATH" },
+              { key: "mathd", label: "MATH<sup>D</sup>" },
+              { key: "math2", label: "MATH<sup>2</sup>" },
+              { key: "gsm8k", label: "GSM8K" },
+              { key: "amc23", label: "AMC23" },
+              { key: "pert_simple", label: "MATH-perturb<br><span>-simple</span>" },
+              { key: "pert_hard", label: "MATH-perturb<br><span>-hard</span>" },
+              { key: "aime2024", label: "AIME<br><span>2024</span>" },
+              { key: "aime2025", label: "AIME<br><span>2025</span>" },
+              { key: "avg", label: "Avg." }
+            ];
+          
+            // Data extracted from your image for Model 1.
+            // Fill Model 2 / Model 3 with your other model tables.
+            const models = [
+              {
+                name: "",
+                blocks: [
+                  {
+                    title: "Llama-3.2-3B-Instruct + SFT",
+                    rows: [
+                      { method:"Base Model",   math:44.0, mathd:18.2, math2:21.9, gsm8k:73.0, amc23:21.7, pert_simple:33.7, pert_hard:12.2, aime2024:33.3, aime2025:16.7, avg:30.5 },
+                      { method:"MATH-Train",   math:44.8, mathd:22.9, math2:21.0, gsm8k:75.1, amc23:20.8, pert_simple:33.0, pert_hard:12.2, aime2024:30.0, aime2025:20.0, avg:31.1 },
+                      { method:"MATH-Augment", math:45.2, mathd:23.9, math2:23.8, gsm8k:77.8, amc23:23.8, pert_simple:35.1, pert_hard:12.5, aime2024:30.0, aime2025:13.3, avg:31.7 },
+                      { method:"MATH-Hard",    math:45.6, mathd:24.9, math2:23.3, gsm8k:78.2, amc23:21.6, pert_simple:38.0, pert_hard:11.8, aime2024:30.0, aime2025:26.7, avg:33.3 },
+                      { method:"Embed-Sel",    math:46.0, mathd:26.5, math2:20.5, gsm8k:76.6, amc23:21.6, pert_simple:36.2, pert_hard:14.7, aime2024:36.7, aime2025:16.7, avg:32.8 },
+                      { method:"Embed-Syn",    math:48.8, mathd:27.3, math2:19.5, gsm8k:78.4, amc23:22.7, pert_simple:36.9, pert_hard:13.3, aime2024:26.7, aime2025:23.3, avg:33.0 },
+                      { method:"STAT-Sel",     math:51.5, mathd:26.6, math2:25.7, gsm8k:80.2, amc23:24.7, pert_simple:39.8, pert_hard:13.3, aime2024:43.3, aime2025:23.3, avg:36.5, strong:true, avgStrong:true },
+                      { method:"STAT-Syn",     math:50.2, mathd:31.7, math2:26.2, gsm8k:79.2, amc23:23.9, pert_simple:39.1, pert_hard:14.7, aime2024:40.0, aime2025:30.0, avg:37.2, strong:true, avgStrong:true }
+                    ]
+                  },
+                  {
+                    title: "<span style='color:#9d9d9d'>Llama-3.2-3B-Instruct + SFT</span> + GRPO",
+                    rows: [
+                      { method:"Base Model",   math:45.4, mathd:24.4, math2:23.3, gsm8k:77.4, amc23:25.8, pert_simple:38.4, pert_hard:11.8, aime2024:33.3, aime2025:3.3,  avg:31.8 },
+                      { method:"MATH-Train",   math:46.4, mathd:28.4, math2:28.6, gsm8k:80.7, amc23:29.7, pert_simple:37.6, pert_hard:12.5, aime2024:36.7, aime2025:10.0, avg:34.5 },
+                      { method:"MATH-Augment", math:47.4, mathd:31.6, math2:28.6, gsm8k:81.4, amc23:30.6, pert_simple:37.6, pert_hard:14.0, aime2024:36.7, aime2025:33.3, avg:37.9 },
+                      { method:"MATH-Hard",    math:49.4, mathd:33.2, math2:28.6, gsm8k:80.3, amc23:31.3, pert_simple:39.1, pert_hard:15.4, aime2024:43.3, aime2025:13.3, avg:37.1 },
+                      { method:"Embed-Sel",    math:50.4, mathd:37.5, math2:23.8, gsm8k:80.5, amc23:32.0, pert_simple:38.0, pert_hard:16.8, aime2024:36.7, aime2025:20.0, avg:38.8 },
+                      { method:"Embed-Syn",    math:49.7, mathd:37.8, math2:19.5, gsm8k:80.6, amc23:33.9, pert_simple:39.1, pert_hard:16.8, aime2024:36.7, aime2025:23.3, avg:38.6 },
+                      { method:"STAT-Sel",     math:52.2, mathd:35.0, math2:32.4, gsm8k:81.8, amc23:34.2, pert_simple:42.7, pert_hard:17.6, aime2024:43.3, aime2025:26.7, avg:40.7, strong:true, avgStrong:true },
+                      { method:"STAT-Syn",     math:51.0, mathd:39.1, math2:29.0, gsm8k:82.0, amc23:31.9, pert_simple:43.0, pert_hard:15.8, aime2024:46.7, aime2025:33.3, avg:41.3, strong:true, avgStrong:true }
+                    ]
+                  }
+                ]
+              },
+              {
+                name: "",
+                blocks: [
+                  {
+                    title: "Llama-3.2-1B-Instruct + SFT",
+                    rows: [
+                      { method:"Base Model",   math:26.0, mathd:15.1, math2:9.1,  gsm8k:40.7, amc23:11.1, pert_simple:17.2, pert_hard:6.5, aime2024:20.0, aime2025:10.0, avg:17.3 },
+                      { method:"MATH-Train",   math:27.0, mathd:14.5, math2:10.0, gsm8k:42.8, amc23:8.8,  pert_simple:19.0, pert_hard:6.8, aime2024:26.7, aime2025:10.0, avg:18.4 },
+                      { method:"MATH-Augment", math:27.8, mathd:14.2, math2:8.1,  gsm8k:43.4, amc23:11.1, pert_simple:17.9, pert_hard:6.8, aime2024:26.7, aime2025:3.3,  avg:17.7 },
+                      { method:"MATH-Hard",    math:28.4, mathd:15.4, math2:8.6,  gsm8k:44.6, amc23:10.8, pert_simple:18.6, pert_hard:7.2, aime2024:23.3, aime2025:3.3,  avg:17.8 },
+                      { method:"Embed-Sel",    math:27.4, mathd:15.6, math2:8.6,  gsm8k:44.6, amc23:8.8,  pert_simple:18.6, pert_hard:6.8, aime2024:26.7, aime2025:3.3,  avg:17.8 },
+                      { method:"Embed-Syn",    math:28.4, mathd:17.2, math2:11.0, gsm8k:44.3, amc23:10.0, pert_simple:20.1, pert_hard:7.9, aime2024:23.3, aime2025:6.7,  avg:18.8 },
+                      { method:"STAT-Sel",     math:32.4, mathd:15.6, math2:11.0, gsm8k:45.0, amc23:12.0, pert_simple:19.4, pert_hard:7.9, aime2024:26.7, aime2025:16.7, avg:20.7, strong:true },
+                      { method:"STAT-Syn",     math:34.5, mathd:18.3, math2:12.4, gsm8k:45.6, amc23:11.0, pert_simple:20.8, pert_hard:7.5, aime2024:23.3, aime2025:10.0, avg:20.4, strong:true }
+                    ]
+                  },
+                  {
+                    title: "<span style='color:#9d9d9d'>Llama-3.2-1B-Instruct + SFT</span> + GRPO",
+                    rows: [
+                      { method:"Base Model",   math:31.8, mathd:14.4, math2:9.5,  gsm8k:49.7, amc23:13.3, pert_simple:23.3, pert_hard:8.2, aime2024:20.0, aime2025:6.7,  avg:19.7 },
+                      { method:"MATH-Train",   math:32.0, mathd:16.0, math2:11.9, gsm8k:50.8, amc23:10.0, pert_simple:23.7, pert_hard:7.9, aime2024:16.7, aime2025:6.7,  avg:19.5 },
+                      { method:"MATH-Augment", math:31.2, mathd:15.0, math2:9.0,  gsm8k:49.1, amc23:13.6, pert_simple:24.7, pert_hard:7.9, aime2024:23.3, aime2025:13.3, avg:20.8 },
+                      { method:"MATH-Hard",    math:32.2, mathd:14.8, math2:11.0, gsm8k:50.6, amc23:11.6, pert_simple:22.9, pert_hard:6.5, aime2024:26.7, aime2025:10.0, avg:20.7 },
+                      { method:"Embed-Sel",    math:32.8, mathd:16.2, math2:11.4, gsm8k:49.9, amc23:12.0, pert_simple:21.9, pert_hard:6.5, aime2024:23.3, aime2025:13.3, avg:20.8 },
+                      { method:"Embed-Syn",    math:32.6, mathd:15.0, math2:10.5, gsm8k:51.0, amc23:13.9, pert_simple:21.1, pert_hard:6.8, aime2024:26.7, aime2025:3.3,  avg:20.1 },
+                      { method:"STAT-Sel",     math:34.8, mathd:16.6, math2:13.8, gsm8k:50.1, amc23:14.8, pert_simple:23.7, pert_hard:9.0, aime2024:30.0, aime2025:16.7, avg:23.3, strong:true },
+                      { method:"STAT-Syn",     math:35.2, mathd:21.1, math2:13.8, gsm8k:51.0, amc23:14.8, pert_simple:24.7, pert_hard:7.9, aime2024:33.3, aime2025:16.7, avg:24.3, strong:true }
+                    ]
+                  }
+                ]
+              },
+              {
+                name: "",
+                blocks: [
+                  {
+                    title: "Qwen2.5-3B + SFT",
+                    rows: [
+                      { method:"Base model",   math:55.8, mathd:45.3, math2:34.8, gsm8k:80.9, amc23:26.4, pert_simple:43.7, pert_hard:24.0, aime2024:23.3, aime2025:20.0, avg:39.4 },
+                      { method:"MATH-Train",   math:50.0, mathd:44.2, math2:32.9, gsm8k:80.1, amc23:33.6, pert_simple:42.3, pert_hard:23.3, aime2024:26.7, aime2025:26.7, avg:40.0 },
+                      { method:"MATH-Augment", math:56.6, mathd:45.6, math2:37.1, gsm8k:80.4, amc23:33.0, pert_simple:40.9, pert_hard:21.9, aime2024:16.7, aime2025:26.7, avg:39.9 },
+                      { method:"MATH-Hard",    math:56.7, mathd:45.6, math2:31.4, gsm8k:79.8, amc23:33.6, pert_simple:43.7, pert_hard:23.7, aime2024:30.0, aime2025:16.7, avg:40.1 },
+                      { method:"Embed-Sel",    math:57.5, mathd:46.4, math2:34.3, gsm8k:80.4, amc23:33.6, pert_simple:43.7, pert_hard:21.9, aime2024:30.0, aime2025:26.7, avg:41.6 },
+                      { method:"Embed-Syn",    math:56.4, mathd:47.4, math2:34.3, gsm8k:80.4, amc23:35.2, pert_simple:43.7, pert_hard:24.0, aime2024:26.7, aime2025:26.7, avg:41.6 },
+                      { method:"STAT-Sel",     math:58.4, mathd:47.6, math2:39.5, gsm8k:82.3, amc23:35.5, pert_simple:45.9, pert_hard:24.0, aime2024:33.3, aime2025:30.0, avg:44.1, strong:true },
+                      { method:"STAT-Syn",     math:59.4, mathd:49.2, math2:40.5, gsm8k:81.3, amc23:34.4, pert_simple:44.8, pert_hard:25.1, aime2024:36.7, aime2025:30.0, avg:44.6, strong:true }
+                    ]
+                  },
+                  {
+                    title: "<span style='color:#9d9d9d'>Qwen2.5-3B + SFT</span> + GRPO",
+                    rows: [
+                      { method:"Base model",   math:61.6, mathd:49.8, math2:41.0, gsm8k:85.1, amc23:37.7, pert_simple:49.8, pert_hard:25.8, aime2024:33.3, aime2025:30.0, avg:46.0 },
+                      { method:"MATH-Train",   math:61.6, mathd:51.1, math2:34.8, gsm8k:84.8, amc23:36.9, pert_simple:51.6, pert_hard:26.5, aime2024:33.3, aime2025:30.0, avg:45.6 },
+                      { method:"MATH-Augment", math:61.0, mathd:48.2, math2:40.5, gsm8k:84.0, amc23:36.3, pert_simple:48.7, pert_hard:26.2, aime2024:36.7, aime2025:26.7, avg:45.4 },
+                      { method:"MATH-Hard",    math:59.0, mathd:51.1, math2:35.7, gsm8k:84.2, amc23:37.7, pert_simple:49.8, pert_hard:26.5, aime2024:33.3, aime2025:23.3, avg:44.5 },
+                      { method:"Embed-Sel",    math:59.7, mathd:48.9, math2:41.0, gsm8k:84.3, amc23:38.4, pert_simple:46.6, pert_hard:25.8, aime2024:26.7, aime2025:36.7, avg:45.3 },
+                      { method:"Embed-Syn",    math:61.4, mathd:52.3, math2:40.0, gsm8k:83.7, amc23:38.8, pert_simple:47.7, pert_hard:28.0, aime2024:26.7, aime2025:30.0, avg:45.4 },
+                      { method:"STAT-Sel",     math:62.8, mathd:52.1, math2:44.8, gsm8k:84.8, amc23:38.8, pert_simple:48.7, pert_hard:30.1, aime2024:36.7, aime2025:33.3, avg:48.0, strong:true },
+                      { method:"STAT-Syn",     math:61.8, mathd:52.4, math2:41.9, gsm8k:85.6, amc23:39.2, pert_simple:50.9, pert_hard:26.9, aime2024:40.0, aime2025:36.7, avg:48.4, strong:true }
+                    ]
+                  }
+                ]
+              },
+            ];
+          
+            function fmt(v) {
+              if (v === null || v === undefined || v === "") return "";
+              if (typeof v === "number") return v.toFixed(1);
+              return String(v);
+            }
+          
+            function rankStylesForBlock(block, columns) {
+              const metricKeys = columns.map(c => c.key).filter(k => k !== "method");
+
+              const maxVal = {};
+              const secondVal = {};
+
+              for (const k of metricKeys) {
+                const vals = (block.rows || [])
+                  .map(r => r[k])
+                  .filter(v => typeof v === "number" && Number.isFinite(v));
+
+                if (vals.length === 0) continue;
+
+                const uniqDesc = Array.from(new Set(vals)).sort((a, b) => b - a);
+                maxVal[k] = uniqDesc[0];
+                secondVal[k] = uniqDesc.length > 1 ? uniqDesc[1] : undefined;
+              }
+
+              return { maxVal, secondVal };
+            }
+
+            function renderTable(model) {
+              const container = document.createElement("div");
+
+              // Optional model header
+              const h = document.createElement("div");
+              h.className = "subnote";
+              h.innerHTML = `<strong>${model.name}</strong>`;
+              container.appendChild(h);
+
+              for (const block of model.blocks) {
+                const isGRPO = block.title.includes("GRPO");
+
+                // If this is the GRPO section, create a toggle button + hidden wrapper
+                let wrapper = container;
+                if (isGRPO) {
+                  const accordion = document.createElement("div");
+                  accordion.className = "accordion";
+
+                  const header = document.createElement("button");
+                  header.type = "button";
+                  header.className = "accordion-header";
+                  header.setAttribute("aria-expanded", "false");
+                  header.innerHTML = `
+                    <span class="accordion-title">${block.title}</span>
+                    <span class="accordion-icon" aria-hidden="true">▾</span>
+                  `;
+
+                  const contentDiv = document.createElement("div");
+                  contentDiv.className = "accordion-panel";
+                  contentDiv.hidden = true;
+
+                  header.onclick = () => {
+                    const expanded = header.getAttribute("aria-expanded") === "true";
+                    header.setAttribute("aria-expanded", String(!expanded));
+                    contentDiv.hidden = expanded;
+                  };
+
+                  accordion.appendChild(header);
+                  accordion.appendChild(contentDiv);
+                  container.appendChild(accordion);
+
+                  wrapper = contentDiv;
+                }
+
+                if (!isGRPO) {
+                  const title = document.createElement("div");
+                  title.className = "section-title";
+                  title.textContent = block.title;
+                  wrapper.appendChild(title);
+                }
+
+                const table = document.createElement("table");
+
+                const thead = document.createElement("thead");
+                const trh = document.createElement("tr");
+                for (const col of columns) {
+                  const th = document.createElement("th");
+                  th.innerHTML = col.label;
+                  if (col.align === "left") th.style.textAlign = "left";
+                  trh.appendChild(th);
+                }
+                thead.appendChild(trh);
+                table.appendChild(thead);
+
+                const { maxVal, secondVal } = rankStylesForBlock(block, columns);
+                const tbody = document.createElement("tbody");
+                if (!block.rows || block.rows.length === 0) {
+                  const tr = document.createElement("tr");
+                  const td = document.createElement("td");
+                  td.colSpan = columns.length;
+                  td.style.textAlign = "left";
+                  td.style.color = "#6b7280";
+                  td.textContent = "No data yet — paste rows into the models[] object.";
+                  tr.appendChild(td);
+                  tbody.appendChild(tr);
+                } else {
+                  for (const row of block.rows) {
+                    const tr = document.createElement("tr");
+                    for (const col of columns) {
+                      const td = document.createElement("td");
+                      if (col.key === "method") {
+                        td.textContent = row.method;
+                        if (row.strong) td.classList.add("methods-strong");
+                      } else {
+                        td.textContent = fmt(row[col.key]);
+
+                        // Best = bold, 2nd best (distinct) = underline (ties supported)
+                        const v = row[col.key];
+                        if (typeof v === "number" && Number.isFinite(v)) {
+                          if (v === maxVal[col.key]) td.classList.add("best");
+                          else if (v === secondVal[col.key]) td.classList.add("second");
+                        }
+                      }
+                      tr.appendChild(td);
+                    }
+                    tbody.appendChild(tr);
+                  }
+                }
+
+                table.appendChild(tbody);
+                wrapper.appendChild(table);
+              }
+
+              return container;
+            }
+          
+            // Mount the panels
+            models.forEach((m, idx) => {
+              const panel = document.getElementById(`panel-${idx}`);
+              panel.appendChild(renderTable(m));
+            });
+          
+            // Tabs behavior
+            const tabButtons = Array.from(document.querySelectorAll(".tabbtn"));
+            const panels = Array.from(document.querySelectorAll(".panel"));
+          
+            function activateTab(i) {
+              tabButtons.forEach((b, idx) => b.setAttribute("aria-selected", String(idx === i)));
+              panels.forEach((p, idx) => p.classList.toggle("active", idx === i));
+            }
+          
+            tabButtons.forEach((btn, i) => {
+              btn.addEventListener("click", () => activateTab(i));
+            });
+          </script>
+          
+          <div class="content has-text-left">
+            <p>
+              <b>Takeaways:</b>
+             Applying STAT-Sel and STAT-Syn teaching on Llama and Qwen models with MATH data shows the following:
+          
+             <ol style="padding-left: 1em; font-size: 0.95em;">
+               <li><u>Substantial in-distribution gains:</u> STAT achieves improvement on MATH by up to 7.5%, whereas naive fine-tuning yields negligible gains. Previous embedding-based data selection strategies that adapt to the student's validation errors are found ineffective.</li>
+          
+               <li><u>Strong out-of-distribution (OOD) generalization:</u> Improvements in difficult and OOD benchmarks such as AIME24/25 and AMC23 highlight the general utility of skill-targeted training.</li>
+          
+               <li><u>Adaptivity to evolving tasks:</u> STAT-Sel and STAT-Syn can be continually adapted to new, harder evaluation settings (e.g., new validation sets) while still leveraging the same training set.</li>
+          
+               <li><u>Supplementary benefits over reinforcement learning (RL):</u> STAT followed by RL improves upon RL-only training such as GRPO, suggesting that STAT is likely to prove relevant to most training pipelines today.</li>
+             </ol>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="result">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div class="section-title has-text-centered">
+            <h2 class="title is-3">Why does Skill-Targeted Training Work?</h2>
+            <h3 class="subtitle is-5" style="text-align: center; color: #5a5a5a; font-size: 1.25rem; margin-bottom: 1.5rem;">
+              Analysis & Ablations
+            </h3>
+          </div>
+
+          <div class="content has-text-left">
+            <p>
+              <b>TL;DR</b>
+              We conducted extensive ablations to pinpoint the success of our proposed methods. A fine-grained skill-level analysis reveals that despite being extensively trained on MATH, smaller models struggle on <a class="toc-link" href="#basic-skills"><b>basic computational skills</b></a> such as basic algebra. By <a class="toc-link" href="#skill-improve"><b>explicitly addressing these basic skills</b></a>, our methods reduce such errors and improve generation performance, including on out-of-distribution tasks. In contrast, alternative approaches such as embedding-based methods often emphasize topic similarity but overlook the basic missing skills (see Figure 2 in <a href="https://arxiv.org/abs/2510.10023" target="_blank" style="color: #C2726E;"><b>our paper</b></a>). Furthermore, a case study on our synthetic data stresses the importance of <a class="toc-link" href="#case-study"><b>targeting "missing skills" instead of "question-related skills"</b></a>. Thus, our findings highlight the importance of skill-targeted adaptive training for advancing model performance.</p>
+            
+          </div>
+
+          <div id="basic-skills">
+            <!-- <h2 class="title is-3">Core Problem in Continual Learning</h2> -->
+            <h3 class="subtitle is-5" style="text-align: center; color: #5a5a5a; font-size: 1.25rem; font-weight:bold; margin-bottom: 1.5rem;">
+              <b>Models Struggle with Basic Computational Skills </b>
+            </h3>
+            
+            <div class="content has-text-left">
+              <p>
+                We closely examined the Missing-Skill-Profile across different models, obtained at the end of <a class="toc-link" href="#stage2"><b>Stage 2</b></a>. We present the Top 10 frequently missing skills for each model according to their Missing-Skill-Profile below. The key observations are:</p>
+
+                <ol style="padding-left: 1em; font-size: 0.95em;">
+                  <li><strong>Algebra-centric skills appear at the top</strong>, e.g., manipulating equations, handling expressions, and solving linear forms. This suggests that even though both Llama and Qwen models achieve high performance on MATH, they systematically struggle with operation computations.</li>
+                  <li><strong>Most missing skills are shared across models</strong>, e.g., equation-solving skills and basic arithmetic operations are missing in different model families (Llama and Qwen) and sizes (1B and 3B). However, smaller models show more frequent weaknesses in basic computational skills like arithmetic.</li>
+                </ol>
+              </p>
+              
+            </div>
+            <div style="margin: 2.5rem 0 2.5rem 0;">
+              <img src="images/skill-profile.png" alt="Skill Profile" style="width: 100%; height: auto; border-radius: 0.75rem; display: block;"/>
+            </div>
+          </div>
+
+          <div id="skill-improve">
+            <!-- <h2 class="title is-3">Core Problem in Continual Learning</h2> -->
+            <h3 class="subtitle is-5" style="text-align: center; color: #5a5a5a; font-size: 1.25rem; font-weight:bold; margin-bottom: 1.5rem;">
+              <b> STAT Effectively Addresses Models' Frequent Missing Skills</b>
+            </h3>
+            <div class="content has-text-left">
+              <p>We take Llama-3.2-1B-Instruct as a case study to examine how different training strategies impact performance across skills. From its Missing-Skill-Profile, we select the 10 most frequently missing skills and build corresponding evaluation sets, each containing questions annotated via the Skill-Map. We then measure both absolute performance and performance gains under each method.</p>
+
+              <p>As shown in the radar plot below, STAT consistently outperform all baselines across all 10 skills, whereas baseline models can even fall behind the base model on skills such as Algebraic Manipulation and Modular Arithmetic. We provides a quantitative breakdown in the heatmap below, showing that STAT can deliver over 10% accuracy gains on 5 skills, with the largest improvements on basic skills like Calculation & Conversion, Algebraic Expression, and Combinatoric Expressions. Notably, STAT also brings clear improvements on knowledge-intensive skills such as Number Theory and Combinatorics.</p>
+
+            </div>
+            <div style="margin: 2.5rem 0 2.5rem 0;">
+              <img src="images/skill-improve.png" alt="STAT Skill Improvement" style="width: 100%; height: auto; border-radius: 0.75rem; display: block;"/>
+            </div>
+          </div>
+
+          <div id="case-study">
+            <!-- <h2 class="title is-3">Core Problem in Continual Learning</h2> -->
+            <h3 class="subtitle is-5" style="text-align: center; color: #5a5a5a; font-size: 1.25rem; font-weight:bold; margin-bottom: 1.5rem;">
+              <b> Adaptivity Matters: Question Skill ≠ Missing Skill</b>
+            </h3>
+            <div class="content has-text-left">
+              <p>
+                To understand why our training samples are skill-targeted, we conduct a case study of the training data.
+                Here we compare STAT-Syn with Embed-Syn, as their data are both created with a specific focus
+                (i.e., <b style="color: #748A6F;">embedding-based similarity</b> vs <b style="color: #C2726E;">missing-skill targeting</b>).
+              </p>
+            
+              <p>
+                In the example below, the original question centers on ellipse geometry; 
+                the model handles this part well, but showed a gap in the final equation-solving step. 
+                The new question in Embed-Syn, though highly relevant, captures only the main topic 
+                (Ellipse Geometry) through embedding similarity. By contrast, STAT-Syn leverages the missing-skill 
+                information (Solving Equations) and generates a targeted question.
+              </p>
+            
+              <p>
+                This case study demonstrates that semantic similarity, as captured by embedding-based methods, 
+                is not always the right approach. Skill-targeted adaptive training provides a direct way to 
+                target the weaknesses of the model.
+              </p>
+            </div>
+            <div style="max-width: 1100px; margin: 30px auto; font-family: Georgia, 'Times New Roman', serif;">
+
+              <div style="display: flex; gap: 28px; align-items: flex-start;">
+            
+                <!-- LEFT COLUMN -->
+                <div style="flex: 1; display: flex; flex-direction: column; gap: 14px;">
+            
+                  <!-- Original Question -->
+                  <div id="original-question-box" class="hover-trigger-embed" style="border: 2px solid #748A6F; border-radius: 10px; overflow: hidden; cursor: pointer; transition: all 0.3s ease;">
+                    <div style="background:#748A6F; color:#fff; padding:5px 12px; font-weight:600; font-size:14px;">
+                      Original Question (on Ellipse Geometry)
+                    </div>
+                    <div style="padding:12px; font-size:14px; line-height:1.45;">
+                      Let \(F_1\) and \(F_2\) be the foci of the ellipse
+                      \(kx^2 + y^2 = 1\), where \(k > 1\) is a constant. Suppose that there is a
+                      circle which passes through \(F_1\) and \(F_2\) and which lies tangent to
+                      the ellipse at two points on the \(x\)-axis. Compute \(k\).
+                    </div>
+                  </div>
+            
+                  <!-- Model Response -->
+                  <div style="border: 2px solid #999; border-radius: 10px; overflow: hidden;">
+                    <div style="background:#999; color:#fff; padding:5px 12px; font-weight:600; font-size:14px;">
+                      Model Response &amp; Missing Skill (on Solving Equations)
+                    </div>
+                    <div style="padding:12px; font-size:14px; line-height:1.45;">
+                      <p id="correct-paragraph" class="hover-trigger-embed" style="cursor: pointer; transition: background-color 0.3s ease; padding: 8px; margin: -8px; border-radius: 6px;">
+                        We can rewrite this equation in the standard form of an ellipse:
+                        \(\frac{x^2}{1/k} + \frac{y^2}{1} = 1\). We can see that the length of
+                        the semi-horizontal axis is \(1\) and the semi-vertical axis is
+                        \(\frac{1}{\sqrt{k}}\). <span style="color:#748A6F; font-weight: bold;">(Correct ✓)</span>
+                      </p>
+            
+                      <div id="missing-skill-box" class="hover-trigger-stat" style="border: 2px dashed #C2726E; padding:10px; border-radius:6px; cursor: pointer; transition: all 0.3s ease;">
+                        Therefore, we have \(\frac{\sqrt{k}-1}{\sqrt{k}} = \frac{1}{\sqrt{k}}\).
+                        Simplifying this equation, we get:
+                        \(\sqrt{\frac{1}{k}} - 1 = \sqrt{\frac{1}{k}} - 1\).
+                        This equation is true for all values of \(k\). Therefore, the value of
+                        \(k\) is not uniquely determined by the given conditions.
+                        <span style="color:#C2726E; font-weight: bold;">(Incorrect ✗, Missing skill: Solving Equations)</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            
+                <!-- RIGHT COLUMN -->
+                <div style="width: 200px; display: flex; flex-direction: column; gap: 18px;">
+            
+                  <!-- Embed-Syn Question -->
+                  <div id="embed-syn-box" style="border: 2px solid #748A6F; border-radius: 10px; overflow: hidden; transition: all 0.3s ease;">
+                    <div style="background:#748A6F; color:#fff; padding:5px 12px; font-weight:600; font-size:14px;">
+                      Embed-Syn Question (on Ellipse Geometry)
+                    </div>
+                    <div style="padding:12px; font-size:14px; line-height:1.45;">
+                      The ellipse \(\frac{x^2}{9} + \frac{y^2}{4} = 1\) has foci located along one
+                      of the coordinate axes. What is the distance between the foci?
+                    </div>
+                  </div>
+            
+                  <!-- STAT-Syn Question -->
+                  <div id="stat-syn-box" style="border: 2px solid #C2726E; border-radius: 10px; overflow: hidden; background:#fdeaea; transition: all 0.3s ease;">
+                    <div style="background:#C2726E; color:#fff; padding:5px 12px; font-weight:600; font-size:14px;">
+                      STAT-Syn Question (on Solving Equations)
+                    </div>
+                    <div style="padding:12px; font-size:14px; text-align:center;">
+                      Solve for \(x > 0\):<br>
+                      \[
+                        \frac{1}{\sqrt{x+4}} = 2.
+                      \]
+                    </div>
+                  </div>
+                </div>
+            
+              </div>
+              
+              <script>
+                // Hover effects for skill illustration
+                (function() {
+                  // Get all elements
+                  const embedTriggers = document.querySelectorAll('.hover-trigger-embed');
+                  const statTriggers = document.querySelectorAll('.hover-trigger-stat');
+                  const embedSynBox = document.getElementById('embed-syn-box');
+                  const statSynBox = document.getElementById('stat-syn-box');
+                  const correctParagraph = document.getElementById('correct-paragraph');
+                  const originalQuestionBox = document.getElementById('original-question-box');
+                  
+                  // Hover effect for Embed-Syn (green) - triggered by original question or correct paragraph
+                  embedTriggers.forEach(trigger => {
+                    trigger.addEventListener('mouseenter', function() {
+                      embedSynBox.style.boxShadow = '0 0 20px rgba(95, 155, 85, 0.75)';
+                      embedSynBox.style.transform = 'scale(1.03)';
+                      embedSynBox.style.backgroundColor = '#f0f7ed';
+                      if (trigger === correctParagraph) {
+                        correctParagraph.style.backgroundColor = 'rgba(116, 138, 111, 0.1)';
+                      } else if (trigger === originalQuestionBox) {
+                        originalQuestionBox.style.backgroundColor = 'rgba(116, 138, 111, 0.1)';
+                      }
+                    });
+                    
+                    trigger.addEventListener('mouseleave', function() {
+                      embedSynBox.style.boxShadow = '';
+                      embedSynBox.style.transform = '';
+                      embedSynBox.style.backgroundColor = '';
+                      if (trigger === correctParagraph) {
+                        correctParagraph.style.backgroundColor = '';
+                      } else if (trigger === originalQuestionBox) {
+                        originalQuestionBox.style.backgroundColor = '';
+                      }
+                    });
+                  });
+                  
+                  // Hover effect for STAT-Syn (red) - triggered by missing skill box
+                  statTriggers.forEach(trigger => {
+                    trigger.addEventListener('mouseenter', function() {
+                      statSynBox.style.boxShadow = '0 0 20px rgba(194, 114, 110, 0.6)';
+                      statSynBox.style.transform = 'scale(1.03)';
+                      statSynBox.style.backgroundColor = '#ffd5d3';
+                      trigger.style.backgroundColor = 'rgba(194, 114, 110, 0.1)';
+                    });
+                    
+                    trigger.addEventListener('mouseleave', function() {
+                      statSynBox.style.boxShadow = '';
+                      statSynBox.style.transform = '';
+                      statSynBox.style.backgroundColor = '#fdeaea';
+                      trigger.style.backgroundColor = '';
+                    });
+                  });
+                })();
+              </script>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="section" id="extended-reading">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <!-- <div class="column is-four-fifths"> -->
+          <!-- <div class="section-title has-text-centered">
+            <h2 class="title is-3">Extended Reading</h2>
+          </div> -->
+          
+          <div class="content has-text-left">
+            <div class="accordion" style="margin-top: 1.5rem;">
+              <button type="button" class="accordion-header" aria-expanded="false" style="background: #f8f4f3; border-left: 4px solid #C2726E; border-radius: 0.5rem; padding: 1rem 1.5rem;">
+                <span class="accordion-title" style="text-align: left; font-size: 1rem;">
+                  <strong>Extended Reading:</strong> <a href="https://arxiv.org/abs/2505.00147" target="_blank" style="color: #C2726E;" onclick="event.stopPropagation();">AdaptMI: Adaptive Skill-based In-context Math Instruction for Small Language Models</a>
+                </span>
+                <span class="accordion-icon" aria-hidden="true">▾</span>
+              </button>
+              
+              <div class="accordion-panel" hidden style="padding: 1.5rem;">
+                <!-- <h3 class="subtitle is-5" style="color: #5a5a5a; font-size: 1.25rem; font-weight:600; margin-bottom: 1rem;">
+                  AdaptMI: Adaptive Skill-based In-context Math Instruction for Small Language Models
+                </h3> -->
+                
+                <p>
+                  For those interested in exploring related research on skill-targeted learning, we recommend our previous work on <b>AdaptMI (COLM 2025)</b><sup>[8]</sup>, which investigates how small language models (SLMs) can better learn from in-context examples during inference time. While STAT focuses on skill-targeted training data curation, AdaptMI addresses skill-based in-context learning strategies.
+                </p>
+                
+                <p>
+                  AdaptMI identifies a critical challenge: while skill-based in-context learning effectively boosts larger models' math problem-solving abilities, it provides minimal gains for smaller 1B-7B parameter models. The key insight is that providing skill-based examples can actually harm SLM performance on easier questions by introducing unnecessary information that distracts rather than helps.
+                </p>
+                
+                <p>
+                  Drawing from human pedagogy and cognitive load theory, AdaptMI proposes a simple yet effective solution: <b>apply skill-based examples only when the model struggles with a question</b>. The enhanced AdaptMI+ variant goes further by targeting examples to the specific skills missing from the model's incorrect responses. Across popular math benchmarks, AdaptMI+ achieves up to 6% accuracy improvements over naive skill-based methods.
+                </p>
+                
+              </div>
+            <!-- </div> -->
+          </div>
+          
+          <script>
+            // Accordion functionality for Extended Reading section
+            (function() {
+              const accordionHeaders = document.querySelectorAll('#extended-reading .accordion-header');
+              accordionHeaders.forEach(header => {
+                header.onclick = () => {
+                  const expanded = header.getAttribute('aria-expanded') === 'true';
+                  header.setAttribute('aria-expanded', String(!expanded));
+                  const panel = header.nextElementSibling;
+                  panel.hidden = expanded;
+                };
+              });
+            })();
+          </script>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
 
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
@@ -432,6 +1415,56 @@
       url={https://arxiv.org/abs/2510.10023}, 
     }
 </code></pre>
+    </div>
+  </section>
+
+  <section class="section" id="References">
+    <div class="container is-max-desktop" style="font-size: 0.95em; color: #6b7280;">
+      <h2 class="title is-4 has-text-centered" style="color: #999; font-size: 1.35em; margin-bottom: 1.2em;">References</h2>
+      <ol style="padding-left: 1.2em; list-style-type: decimal;">
+        <li style="margin-bottom: 0.8em;">
+          <span style="color: #666;">
+            Pablo Villalobos, Anson Ho, Jaime Sevilla, Tamay Besiroglu, Lennart Heim, and Marius Hobbhahn. Position: Will we run out of data? limits of llm scaling based on human-generated data. In Forty-first International Conference on Machine Learning, 2024
+          </span>
+        </li>
+        <li style="margin-bottom: 0.8em;">
+          <span style="color: #666;">
+            Xie, Sang Michael, et al. "Doremi: Optimizing data mixtures speeds up language model pretraining." Advances in Neural Information Processing Systems 36 (2023): 69798-69818.
+          </span>
+        </li>
+        <li style="margin-bottom: 0.8em;">
+          <span style="color: #666;">
+            Kushal Arora, Layla El Asri, Hareesh Bahuleyan, and Jackie Chi Kit Cheung. Why expo-
+sure bias matters: An imitation learning perspective of error accumulation in language
+generation. arXiv preprint arXiv:2204.01171, 2022.
+          </span>
+        </li>
+        <li style="margin-bottom: 0.8em;">
+          <span style="color: #666;">
+            Xia, Mengzhou, et al. "Less: Selecting influential data for targeted instruction tuning." arXiv preprint arXiv:2402.04333 (2024).
+          </span>
+        </li>
+        <li style="margin-bottom: 0.8em;">
+          <span style="color: #666;">
+            Yu, Zichun, Spandan Das, and Chenyan Xiong. "Mates: Model-aware data selection for efficient pretraining with data influence models." Advances in Neural Information Processing Systems 37 (2024): 108735-108759.
+          </span>
+        </li>
+        <li style="margin-bottom: 0.8em;">
+          <span style="color: #666;">
+            Kaur, Simran, et al. “Instruct-SkillMix: A Powerful Pipeline for LLM Instruction Tuning.” arXiv, 2024, arXiv:2408.14774, https://arxiv.org/abs/2408.14774.
+          </span>
+        </li>
+        <li style="margin-bottom: 0.8em;">
+          <span style="color: #666;">
+            Gandhi, Kanishk, et al. "Cognitive behaviors that enable self-improving reasoners, or, four habits of highly effective stars." arXiv preprint arXiv:2503.01307 (2025).
+          </span>
+        </li>
+        <li style="margin-bottom: 0.8em;">
+          <span style="color: #666;">
+            Yinghui He, Abhishek Panigrahi, Yong Lin, and Sanjeev Arora. Adaptmi: Adaptive skill-based in-context math instruction for small language models. arXiv preprint arXiv:2505.00147, 2025.
+          </span>
+        </li>
+      </ol>
     </div>
   </section>
 
