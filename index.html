@@ -309,6 +309,61 @@
       padding: 0 20px;
       box-sizing: border-box;
     }
+    
+    /* Table wrapper for horizontal scroll on mobile */
+    .table-scroll-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 0 -20px;
+      padding: 0 20px;
+    }
+    
+    /* Mobile responsive styles */
+    @media (max-width: 768px) {
+      .wrap {
+        width: 100vw;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        padding: 0 10px;
+        margin-bottom: 2rem;
+      }
+      
+      .tabs {
+        gap: 6px !important;
+        margin-bottom: 8px !important;
+      }
+      
+      .tabbtn {
+        padding: 8px 12px !important;
+        font-size: 13px !important;
+      }
+      
+      thead th {
+        font-size: 12px !important;
+        padding: 8px 6px !important;
+      }
+      
+      tbody td {
+        font-size: 13px !important;
+        padding: 8px 6px !important;
+      }
+      
+      th, td {
+        padding: 8px 6px !important;
+      }
+      
+      .table-section-title {
+        font-size: 14px;
+        padding: 6px 10px;
+      }
+      
+      table {
+        min-width: 800px; /* Ensures table doesn't get too cramped */
+      }
+    }
+    
     .foot { margin-top:10px; color:var(--muted); font-size:10px; }
 
     .accordion {
@@ -1106,7 +1161,12 @@
                 }
 
                 table.appendChild(tbody);
-                wrapper.appendChild(table);
+                
+                // Wrap table in scroll container for mobile
+                const scrollWrapper = document.createElement("div");
+                scrollWrapper.className = "table-scroll-wrapper";
+                scrollWrapper.appendChild(table);
+                wrapper.appendChild(scrollWrapper);
               }
 
               return container;
